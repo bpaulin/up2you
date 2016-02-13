@@ -9,9 +9,7 @@ use Hateoas\Representation\Factory\PagerfantaFactory;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Vote;
 
 class VotesController extends FOSRestController
 {
@@ -47,21 +45,11 @@ class VotesController extends FOSRestController
 
         /** @var \AppBundle\Repository\VoteRepository $voteRepo */
         $voteRepo = $this->getDoctrine()->getRepository('AppBundle:Vote');
-        $queryBuilder = $voteRepo->createQueryBuilder('v')
-            ->where('v.user=:user')
-            ->setParameter(':user', $this->getUser());
+        $queryBuilder = $voteRepo->getQueryBuilderFindBy(
+            $this->getUser(),
+            $vote
+        );
         $routeParam = array('limit' => $limit, 'page' => $page);
-        switch ($vote) {
-            case 'yes':
-                $queryBuilder->andWhere('v.vote=:vote')->setParameter(':vote', Vote::YES);
-                break;
-            case 'maybe':
-                $queryBuilder->andWhere('v.vote=:vote')->setParameter(':vote', Vote::MAYBE);
-                break;
-            case 'no':
-                $queryBuilder->andWhere('v.vote=:vote')->setParameter(':vote', Vote::NO);
-                break;
-        }
         if ($vote) {
             $routeParam['vote'] = $vote;
         }
