@@ -2,9 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Controller\FOSRestController;
 
 class ProposalsController extends FOSRestController

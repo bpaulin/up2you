@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Vote
@@ -11,6 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="vote")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\VoteRepository")
  * @UniqueEntity( fields={"user", "proposal"} )
+ *
+ * @JMS\ExclusionPolicy("all")
  */
 class Vote
 {
@@ -23,6 +26,8 @@ class Vote
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @JMS\Expose()
      */
     private $id;
 
@@ -30,6 +35,8 @@ class Vote
      * @var int
      *
      * @ORM\Column(name="vote", type="smallint")
+     *
+     * @JMS\Expose()
      */
     private $vote;
 
@@ -40,6 +47,8 @@ class Vote
 
     /**
      * @ORM\ManyToOne(targetEntity="Proposal", inversedBy="votes")
+     *
+     * @JMS\Expose()
      */
     protected $proposal;
 

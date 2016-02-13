@@ -16,15 +16,49 @@ class ApiControllerTest extends BaseTestCase
         $this->isSuccessful($client->getResponse());
     }
 
-    public function testAnonymousCantPing()
+    public function anonymousCantAccessProvider()
     {
-        $this->loadFixtureFiles(array(
-            '@AppBundle/DataFixtures/ORM/test.yml'
-        ));
+        return array(
+            array('GET', '/api/ping'),
+            array('GET', '/api/proposals'),
+            array('GET', '/api/votes'),
+        );
+    }
+
+    /**
+     * @dataProvider anonymousCantAccessProvider
+     */
+    public function testAnonymousCantAccess($method, $path)
+    {
         $client = static::createClient();
 
-        $client->request('GET', '/api/ping');
+        $client->request($method, $path);
 
-        $this->isSuccessful($client->getResponse(), false);
+        $this->assertStatusCode(
+            401,
+            $client
+        );
+    }
+
+    public function proposerCantAccessProvider()
+    {
+        return array(
+            array('GET', '/api/votes'),
+        );
+    }
+
+    /**
+     * @dataProvider proposerCantAccessProvider
+     */
+    public function testProposerCantAccess($method, $path)
+    {
+        $client = $this->createClientAuthenticatedAs('proposer');
+
+        $client->request($method, $path);
+
+        $this->assertStatusCode(
+            403,
+            $client
+        );
     }
 }

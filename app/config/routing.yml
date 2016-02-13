@@ -3,11 +3,16 @@ app:
     type:     annotation
 
 login_check:
-    path: /api/login_check
-    methods: POST
+    path:     api/login_check
+    methods:  POST
     defaults: { _controller: FOSUserBundle:Security:check }
 
-users:
+proposals:
     type:     rest
     resource: AppBundle\Controller\ProposalsController
-    prefix: api/
+    prefix:   api/
+
+votes:
+    type:     rest
+    resource: AppBundle\Controller\VotesController
+    prefix:   api/

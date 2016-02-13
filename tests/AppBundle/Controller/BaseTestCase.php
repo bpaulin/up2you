@@ -27,6 +27,7 @@ class BaseTestCase extends WebTestCase
             )
         );
 
+        $this->isSuccessful($client->getResponse());
         $data = json_decode($client->getResponse()->getContent(), true);
 
         $client = static::createClient();
