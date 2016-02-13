@@ -3,9 +3,6 @@ app:
     type:     annotation
 
 login_check:
-    path: /login_check
-
-
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    prefix: /api
+    path: /api/login_check
+    methods: POST
+    defaults: { _controller: FOSUserBundle:Security:check }

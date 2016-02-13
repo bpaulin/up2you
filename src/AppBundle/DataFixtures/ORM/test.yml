@@ -1,0 +1,27 @@
+AppBundle\Entity\User:
+    voter_1:
+        username: voter1
+        email: voter1@up2you.fr
+        plainPassword: voter1
+        enabled: 1
+        roles: [ROLE_VOTER]
+    voter_2:
+        username: voter2
+        email: voter2@up2you.fr
+        plainPassword: voter2
+        enabled: 1
+        roles: [ROLE_VOTER]
+
+AppBundle\Entity\Proposal:
+    proposal_{1..40}:
+        name (unique): <firstName()>
+
+AppBundle\Entity\Vote:
+    vote1_{1..20}:
+        user: '@voter_1'
+        proposal: '@proposal_<current()>'
+        vote: <numberBetween(-1, 1)>
+    vote2_{11..30}:
+        user: '@voter_2'
+        proposal: '@proposal_<current()>'
+        vote: <numberBetween(-1, 1)>

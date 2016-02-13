@@ -33,3 +33,6 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+hautelook_alice:
+    locale: fr_FR

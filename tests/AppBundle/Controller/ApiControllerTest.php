@@ -15,7 +15,7 @@ class ApiControllerTest extends WebTestCase
      *
      * @return \Symfony\Bundle\FrameworkBundle\Client
      */
-    protected function createAuthenticatedClient($username = 'proposer', $password = 'proposer')
+    protected function createAuthenticatedClient($username = 'voter1', $password = 'voter1')
     {
         $client = static::createClient();
         $client->request(
@@ -35,12 +35,17 @@ class ApiControllerTest extends WebTestCase
         return $client;
     }
 
+    public function createClientAuthenticatedAs($user)
+    {
+        return $this->createAuthenticatedClient($user, $user);
+    }
+
     public function testProposerCanPing()
     {
-        $this->loadFixtures(array(
-            'AppBundle\DataFixtures\ORM\LoadUserData'
+        $this->loadFixtureFiles(array(
+            '@AppBundle/DataFixtures/ORM/test.yml'
         ));
-        $client = $this->createAuthenticatedClient();
+        $client = $this->createClientAuthenticatedAs('voter1');
 
         $client->request('GET', '/api/ping');
 
@@ -51,8 +56,8 @@ class ApiControllerTest extends WebTestCase
 
     public function testAnonymousCantPing()
     {
-        $this->loadFixtures(array(
-            'AppBundle\DataFixtures\ORM\LoadUserData'
+        $this->loadFixtureFiles(array(
+            '@AppBundle/DataFixtures/ORM/test.yml'
         ));
         $client = static::createClient();
 
