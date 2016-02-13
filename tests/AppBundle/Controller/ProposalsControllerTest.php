@@ -19,7 +19,7 @@ class ProposalsControllerTest extends BaseTestCase
         $data = json_decode($client->getResponse()->getContent(), true);
         $this->assertEquals(
             array("id", "name"),
-            array_keys($data[0])
+            array_keys($data['_embedded']['items'][0])
         );
     }
 
@@ -38,7 +38,7 @@ class ProposalsControllerTest extends BaseTestCase
         $data = json_decode($client->getResponse()->getContent(), true);
         $this->assertEquals(
             array("id", "name"),
-            array_keys($data[0])
+            array_keys($data['_embedded']['items'][0])
         );
     }
 }
