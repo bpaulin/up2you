@@ -3,8 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Hateoas\Configuration\Annotation as Hateoas;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Proposal
@@ -12,7 +15,11 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="proposal")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProposalRepository")
  *
+ * @UniqueEntity("name")
+ *
  * @JMS\ExclusionPolicy("all")
+ *
+ * @Hateoas\Relation("self", href = "expr('/api/proposal/' ~ object.getId())")
  */
 class Proposal
 {
@@ -30,7 +37,10 @@ class Proposal
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=120, unique=true)
+     * @ORM\Column(name="name", type="string", length=50, unique=true)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length( max = 50 )
      *
      * @JMS\Expose()
      */

@@ -23,7 +23,7 @@ class VotesControllerTest extends BaseTestCase
             array_keys($data['_embedded']['items'][0])
         );
         $this->assertEquals(
-            array("id", "name"),
+            array("id", "name", "_links"),
             array_keys($data['_embedded']['items'][0]["proposal"])
         );
     }
@@ -59,7 +59,7 @@ class VotesControllerTest extends BaseTestCase
             array_keys($data['_embedded']['items'][0])
         );
         $this->assertEquals(
-            array("id", "name"),
+            array("id", "name", "_links"),
             array_keys($data['_embedded']['items'][0]["proposal"])
         );
         foreach ($data['_embedded']['items'] as $vote) {

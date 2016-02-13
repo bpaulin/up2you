@@ -12,6 +12,12 @@
         </exec>
     </target>
 
+    <target name="wip">
+        <exec executable="./vendor/bin/phpunit" passthru="true" checkreturn="true">
+            <arg value="--group=wip"/>
+        </exec>
+    </target>
+
     <target name="phpcs">
         <exec executable="./vendor/bin/phpcs" passthru="true" checkreturn="true">
             <arg value="-p"/>

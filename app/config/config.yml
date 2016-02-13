@@ -85,6 +85,8 @@ fos_rest:
         include_format: false
     view:
         view_response_listener: 'force'
+    body_listener:
+        enabled:              true
 
 nelmio_api_doc:
     sandbox:
@@ -98,3 +100,7 @@ nelmio_api_doc:
             formats: []
         request_format:
             default_format: json
+
+sensio_framework_extra:
+    request:
+        converters: true
