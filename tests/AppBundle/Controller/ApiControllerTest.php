@@ -44,6 +44,7 @@ class ApiControllerTest extends BaseTestCase
     {
         return array(
             array('GET', '/api/votes'),
+            array('GET', '/api/proposals/todo'),
         );
     }
 

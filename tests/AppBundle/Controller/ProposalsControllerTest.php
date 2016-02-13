@@ -22,4 +22,23 @@ class ProposalsControllerTest extends BaseTestCase
             array_keys($data[0])
         );
     }
+
+    public function testVoterCanViewProposalsToDo()
+    {
+        $this->loadFixtureFiles(array(
+            '@AppBundle/DataFixtures/ORM/test.yml'
+        ));
+        $client = $this->createClientAuthenticatedAs('voter1');
+
+        $client->request('GET', '/api/proposals/todo');
+
+        $this->isSuccessful($client->getResponse());
+        $this->assertJson($client->getResponse()->getContent());
+
+        $data = json_decode($client->getResponse()->getContent(), true);
+        $this->assertEquals(
+            array("id", "name"),
+            array_keys($data[0])
+        );
+    }
 }

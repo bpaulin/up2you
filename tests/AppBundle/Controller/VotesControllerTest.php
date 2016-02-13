@@ -4,7 +4,7 @@ namespace Tests\AppBundle\Controller;
 
 class VotesControllerTest extends BaseTestCase
 {
-    public function testVotersCanViewVotes()
+    public function testVotersCanViewAllVotes()
     {
         $this->loadFixtureFiles(array(
             '@AppBundle/DataFixtures/ORM/test.yml'
@@ -40,7 +40,7 @@ class VotesControllerTest extends BaseTestCase
     /**
      * @dataProvider votersCanViewVotesProvider
      */
-    public function testVotersCanViewVotesMaybe($path, $value)
+    public function testVotersCanViewVotes($path, $value)
     {
         $this->loadFixtureFiles(array(
             '@AppBundle/DataFixtures/ORM/test.yml'
