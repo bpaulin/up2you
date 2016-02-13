@@ -43,7 +43,8 @@
         "doctrine/data-fixtures": "^1.1",
         "liip/functional-test-bundle": "^1.4",
         "phpunit/phpunit": "^4.8",
-        "doctrine/doctrine-fixtures-bundle": "^2.3"
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "phpmd/phpmd": "^2.3"
     },
     "scripts": {
         "post-install-cmd": [

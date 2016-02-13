@@ -19,20 +19,35 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function load(ObjectManager $manager)
     {
-      // Get our userManager, you must implement `ContainerAwareInterface`
         $userManager = $this->container->get('fos_user.user_manager');
 
-      // Create our user and set details
         $user = $userManager->createUser();
-        $user->setUsername('username');
-        $user->setEmail('email@domain.com');
-        $user->setPlainPassword('password');
+        $user->setUsername('proposer');
+        $user->setEmail('proposer@domain.com');
+        $user->setPlainPassword('proposer');
         $user->setEnabled(true);
-        $user->setRoles(array('ROLE_ADMIN'));
+        $user->setRoles(array('ROLE_PROPOSER'));
+        $userManager->updateUser($user, true);
 
-      // Update the user
+        $user = $userManager->createUser();
+        $user->setUsername('voter');
+        $user->setEmail('voter@domain.com');
+        $user->setPlainPassword('voter');
+        $user->setEnabled(true);
+        $user->setRoles(array('ROLE_VOTER'));
+        $userManager->updateUser($user, true);
+
+        $user = $userManager->createUser();
+        $user->setUsername('decider');
+        $user->setEmail('decider@domain.com');
+        $user->setPlainPassword('decider');
+        $user->setEnabled(true);
+        $user->setRoles(array('ROLE_DECIDER'));
         $userManager->updateUser($user, true);
     }
 }

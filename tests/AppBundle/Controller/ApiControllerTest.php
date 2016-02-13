@@ -15,7 +15,7 @@ class ApiControllerTest extends WebTestCase
      *
      * @return \Symfony\Bundle\FrameworkBundle\Client
      */
-    protected function createAuthenticatedClient($username = 'username', $password = 'password')
+    protected function createAuthenticatedClient($username = 'proposer', $password = 'proposer')
     {
         $client = static::createClient();
         $client->request(
@@ -62,5 +62,4 @@ class ApiControllerTest extends WebTestCase
             $client->getResponse()->isSuccessful()
         );
     }
-
 }
