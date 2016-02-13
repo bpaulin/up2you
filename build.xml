@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="puzzle" default="ci">
+
+    <target name="ci" depends="phpunit,phpcs"/>
+    <target name="fix" depends="phpcbf"/>
+
+    <target name="phpunit">
+        <exec executable="./vendor/bin/phpunit" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="phpcs">
+        <exec executable="./vendor/bin/phpcs" passthru="true" checkreturn="true">
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg path="src/AppBundle/"/>
+        </exec>
+    </target>
+
+    <target name="phpcbf">
+        <exec executable="./vendor/bin/phpcbf" passthru="true" checkreturn="true">
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg path="src/AppBundle/"/>
+        </exec>
+    </target>
+</project>
