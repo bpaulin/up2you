@@ -7,6 +7,7 @@
 
     <target name="phpunit">
         <exec executable="./vendor/bin/phpunit" passthru="true" checkreturn="true">
+            <!--<arg value="&#45;&#45;group=wip"/>-->
             <!--<arg value="&#45;&#45;coverage-text"/>-->
         </exec>
     </target>

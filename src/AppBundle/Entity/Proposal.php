@@ -4,12 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Proposal
  *
  * @ORM\Table(name="proposal")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProposalRepository")
+ *
+ * @JMS\ExclusionPolicy("all")
  */
 class Proposal
 {
@@ -19,6 +22,8 @@ class Proposal
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @JMS\Expose()
      */
     private $id;
 
@@ -26,6 +31,8 @@ class Proposal
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=120, unique=true)
+     *
+     * @JMS\Expose()
      */
     private $name;
 

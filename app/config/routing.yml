@@ -6,3 +6,8 @@ login_check:
     path: /api/login_check
     methods: POST
     defaults: { _controller: FOSUserBundle:Security:check }
+
+users:
+    type:     rest
+    resource: AppBundle\Controller\ProposalsController
+    prefix: api/

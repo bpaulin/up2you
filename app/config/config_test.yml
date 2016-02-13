@@ -25,3 +25,6 @@ doctrine:
             default:
                 driver:   pdo_sqlite
                 path:     %kernel.cache_dir%/test.db
+
+hautelook_alice:
+    locale: fr_FR
