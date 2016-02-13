@@ -4,10 +4,16 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ProposalsController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of proposals",
+     *  views = { "default", "proposer", "voter" }
+     * )
+     *
      * @REST\Get("proposals")
      */
     public function getProposalsAction()
@@ -19,6 +25,10 @@ class ProposalsController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of unvoted proposals",
+     *  views = { "default", "voter" }
+     * )
      * @REST\Get("proposals/todo")
      */
     public function getProposalsTodoAction()

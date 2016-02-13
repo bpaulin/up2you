@@ -1,11 +1,16 @@
 app:
-    resource: "@AppBundle/Controller/"
+    resource: AppBundle\Controller\DefaultController
     type:     annotation
 
 login_check:
     path:     api/login_check
     methods:  POST
     defaults: { _controller: FOSUserBundle:Security:check }
+
+api:
+    type:     rest
+    resource: AppBundle\Controller\ApiController
+    prefix:   api/
 
 proposals:
     type:     rest
@@ -16,3 +21,7 @@ votes:
     type:     rest
     resource: AppBundle\Controller\VotesController
     prefix:   api/
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc

@@ -5,10 +5,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Vote;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class VotesController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of votes",
+     *  views = { "default", "voter" }
+     * )
      * @REST\Get("votes")
      */
     public function getVotesAction()
@@ -37,6 +42,10 @@ class VotesController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of votes YES",
+     *  views = { "default", "voter" }
+     * )
      * @REST\Get("votes/yes")
      */
     public function getVotesYesAction()
@@ -45,6 +54,10 @@ class VotesController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of votes NO",
+     *  views = { "default", "voter" }
+     * )
      * @REST\Get("votes/no")
      */
     public function getVotesNoAction()
@@ -53,6 +66,10 @@ class VotesController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *  description="Returns a collection of votes MAYBE",
+     *  views = { "default", "voter" }
+     * )
      * @REST\Get("votes/maybe")
      */
     public function getVotesMaybeAction()
