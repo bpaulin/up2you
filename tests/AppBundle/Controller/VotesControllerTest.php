@@ -20,20 +20,20 @@ class VotesControllerTest extends BaseTestCase
 
         $this->assertEquals(
             array("id", "vote", "proposal"),
-            array_keys($data[0])
+            array_keys($data['_embedded']['items'][0])
         );
         $this->assertEquals(
             array("id", "name"),
-            array_keys($data[0]["proposal"])
+            array_keys($data['_embedded']['items'][0]["proposal"])
         );
     }
 
     public function votersCanViewVotesProvider()
     {
         return array(
-            array('/api/votes/maybe', 0),
-            array('/api/votes/yes', 1),
-            array('/api/votes/no', -1),
+            array('/api/votes?vote=maybe', 'maybe'),
+            array('/api/votes?vote=yes', 'yes'),
+            array('/api/votes?vote=no', 'no'),
         );
     }
 
@@ -56,13 +56,13 @@ class VotesControllerTest extends BaseTestCase
 
         $this->assertEquals(
             array("id", "vote", "proposal"),
-            array_keys($data[0])
+            array_keys($data['_embedded']['items'][0])
         );
         $this->assertEquals(
             array("id", "name"),
-            array_keys($data[0]["proposal"])
+            array_keys($data['_embedded']['items'][0]["proposal"])
         );
-        foreach ($data as $vote) {
+        foreach ($data['_embedded']['items'] as $vote) {
             $this->assertEquals(
                 $value,
                 $vote["vote"]

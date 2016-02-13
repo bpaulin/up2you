@@ -36,7 +36,10 @@ class Vote
      *
      * @ORM\Column(name="vote", type="smallint")
      *
-     * @JMS\Expose()
+     *
+     * @JMS\Accessor(getter="getHumanVote")
+     * @JMS\Type("string")
+     * @JMS\Expose
      */
     private $vote;
 
@@ -84,6 +87,39 @@ class Vote
     public function getVote()
     {
         return $this->vote;
+    }
+
+    /**
+     * Set vote
+     *
+     * @param string $vote
+     *
+     * @return Vote
+     */
+    public function setHumanVote($vote)
+    {
+        $map = array(
+            'yes' => self::YES,
+            'maybe' => self::MAYBE,
+            'no' => self::NO
+        );
+
+        return $this->setVote($map[$vote]);
+    }
+
+    /**
+     * Get vote
+     *
+     * @return string
+     */
+    public function getHumanVote()
+    {
+        $map = array(
+            self::YES => 'yes',
+            self::MAYBE => 'maybe',
+            self::NO => 'no'
+        );
+        return $map[$this->getVote()];
     }
 
     /**
