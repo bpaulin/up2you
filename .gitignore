@@ -2,6 +2,10 @@
 /build/
 /phpunit.xml
 /var/*
+!/var/jwt
+/var/jwt/*
+!/var/jwt/private-test.pem
+!/var/jwt/public-test.pem
 !/var/cache
 /var/cache/*
 !var/cache/.gitkeep
