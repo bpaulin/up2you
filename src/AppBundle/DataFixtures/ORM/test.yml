@@ -1,4 +1,10 @@
 AppBundle\Entity\User:
+    proposer:
+        username: proposer
+        email: proposer@up2you.fr
+        plainPassword: proposer
+        enabled: 1
+        roles: [ROLE_PROPOSER]
     voter_1:
         username: voter1
         email: voter1@up2you.fr
