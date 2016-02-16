@@ -21,3 +21,7 @@ votes:
     type:     rest
     resource: AppBundle\Controller\VotesController
     prefix:   api/
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc
