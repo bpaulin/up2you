@@ -1,5 +1,6 @@
 {
-    "name": "vagrant/api",
+    "name": "bpaulin/up2you",
+    "description": "propose and decide",
     "license": "proprietary",
     "type": "project",
     "autoload": {

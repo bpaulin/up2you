@@ -2,17 +2,14 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\ProposalType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\View\View;
 use Hateoas\Configuration\Route;
 use Hateoas\Representation\Factory\PagerfantaFactory;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use AppBundle\Entity\Proposal;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +42,7 @@ class ProposalsController extends FOSRestController
     public function postProposalAction(Request $request)
     {
         $proposal = new Proposal();
-        $form = $this->createForm('AppBundle\Form\ProposalType', $proposal);
+        $form = $this->createForm('AppBundle\Form\Type\ProposalType', $proposal);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
